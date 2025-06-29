@@ -1,0 +1,100 @@
+/* Lógico_1: */
+
+CREATE TABLE Animal (
+    peso FLOAT,
+    raca VARCHAR,
+    nomeAnimal VARCHAR,
+    especie VARCHAR,
+    IDAnimal NUMERIC PRIMARY KEY,
+    dataNascimento DATE,
+    fk_Cliente_IDCliente_ NUMERIC
+);
+
+CREATE TABLE Produto (
+    precoVenda FLOAT,
+    nomeProduto VARCHAR,
+    quantidadeEstoque DOUBLE,
+    IDProduto NUMERIC PRIMARY KEY,
+    descricaoProduto VARCHAR
+);
+
+CREATE TABLE Agendamento (
+    dataHoraAgendamento DATE,
+    IDServico NUMERIC,
+    observacoes VARCHAR,
+    IDAgendamento NUMERIC PRIMARY KEY,
+    fk_Animal_IDAnimal NUMERIC
+);
+
+CREATE TABLE ItemVenda (
+    IDItemVenda NUMERIC PRIMARY KEY,
+    precoUnitarioVenda FLOAT,
+    quantidadeVendida DOUBLE,
+    fk_Produto_IDProduto NUMERIC,
+    fk_Venda__IDVenda NUMERIC
+);
+
+CREATE TABLE Venda_ (
+    dataVenda DATE,
+    valorTotalVenda FLOAT,
+    IDVenda NUMERIC PRIMARY KEY,
+    fk_Cliente_IDCliente_ NUMERIC
+);
+
+CREATE TABLE Servico (
+    IDServico NUMERIC PRIMARY KEY,
+    precoServico FLOAT,
+    descricaoServico VARCHAR,
+    nomeServico VARCHAR,
+    fk_Agendamento_IDAgendamento NUMERIC
+);
+
+CREATE TABLE Cliente (
+    telefoneCliente NUMERIC,
+    emailCliente VARCHAR,
+    nomeCliente VARCHAR,
+    IDCliente_ NUMERIC PRIMARY KEY,
+    enderecoCliente VARCHAR
+);
+ 
+ALTER TABLE Animal ADD CONSTRAINT FK_Animal_2
+    FOREIGN KEY (fk_Cliente_IDCliente_)
+    REFERENCES Cliente (IDCliente_)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Animal ADD CONSTRAINT FK_Animal_3
+    FOREIGN KEY ()
+    REFERENCES ??? (???);
+ 
+ALTER TABLE Agendamento ADD CONSTRAINT FK_Agendamento_2
+    FOREIGN KEY (fk_Animal_IDAnimal)
+    REFERENCES Animal (IDAnimal)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Agendamento ADD CONSTRAINT FK_Agendamento_3
+    FOREIGN KEY (IDServico???)
+    REFERENCES ??? (???);
+ 
+ALTER TABLE ItemVenda ADD CONSTRAINT FK_ItemVenda_2
+    FOREIGN KEY (fk_Produto_IDProduto???)
+    REFERENCES ??? (???)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE ItemVenda ADD CONSTRAINT FK_ItemVenda_3
+    FOREIGN KEY (fk_Venda__IDVenda)
+    REFERENCES Venda_ (IDVenda)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Venda_ ADD CONSTRAINT FK_Venda__2
+    FOREIGN KEY (fk_Cliente_IDCliente_)
+    REFERENCES Cliente (IDCliente_)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Venda_ ADD CONSTRAINT FK_Venda__3
+    FOREIGN KEY ()
+    REFERENCES ??? (???);
+ 
+ALTER TABLE Servico ADD CONSTRAINT FK_Servico_2
+    FOREIGN KEY (fk_Agendamento_IDAgendamento)
+    REFERENCES Agendamento (IDAgendamento)
+    ON DELETE RESTRICT;
